@@ -26,8 +26,12 @@ class DataLocal() {
 
     fun getListSample(): ArrayList<SampleModel> {
         val listSample = arrayListOf<SampleModel>()
-        for (item in SAMPLE_LIST) {
-            listSample.add(SampleModel(item))
+        for ((index, item) in SAMPLE_LIST.withIndex()) {
+            var sample = SampleModel()
+            sample.sampleName = item;
+            sample.tag = index
+
+            listSample.add(sample)
         }
         return listSample;
     }
