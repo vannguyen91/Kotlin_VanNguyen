@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
                 if (sample.tag == 0) {
                     intent = Intent(this@MainActivity, RequestAPIActivity::class.java)
                 }
+                if (sample.tag == 1) {
+                    intent = Intent(this@MainActivity, RequestAPIWithRx::class.java)
+                }
                 startActivity(intent)
                 finish()
             }

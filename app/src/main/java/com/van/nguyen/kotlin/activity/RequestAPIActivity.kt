@@ -5,8 +5,8 @@ import android.view.View
 import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.duong.appnews.Service.API
 import com.van.nguyen.kotlin.R
+import com.van.nguyen.kotlin.api.API
 import com.van.nguyen.kotlin.dialog.CustomProgressBar
 import com.van.nguyen.kotlin.model.BaseResponse
 import com.van.nguyen.kotlin.model.RegisterResponse
@@ -38,10 +38,10 @@ class RequestAPIActivity : AppCompatActivity() {
 
     fun callAPiLogin(request: RequestRegisterAccount) {
         progressBar.show(this, "Please Wait...")
-        API.apiService.login(request)?.enqueue(object : Callback<BaseResponse<RegisterResponse?>?> {
+        API.apiService.login(request).enqueue(object : Callback<BaseResponse<RegisterResponse>> {
             override fun onResponse(
-                call: Call<BaseResponse<RegisterResponse?>?>,
-                response: Response<BaseResponse<RegisterResponse?>?>
+                call: Call<BaseResponse<RegisterResponse>>,
+                response: Response<BaseResponse<RegisterResponse>>
             ) {
                 if (response.body() != null && response.body()!!.data != null && response.body()!!.success) {
                     txtResponse.text = "Your Token: " + response.body()!!.data?.token.toString()
@@ -51,10 +51,7 @@ class RequestAPIActivity : AppCompatActivity() {
                 progressBar.dialog.dismiss()
             }
 
-            override fun onFailure(
-                call: Call<BaseResponse<RegisterResponse?>?>,
-                t: Throwable
-            ) {
+            override fun onFailure(call: Call<BaseResponse<RegisterResponse>>, t: Throwable) {
                 txtResponse.text = t.message
                 progressBar.dialog.dismiss()
             }

@@ -1,9 +1,10 @@
-package com.example.duong.appnews.Service
+package com.van.nguyen.kotlin.api
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -32,13 +33,11 @@ object API {
                 val client = httpClient.build()
                 retrofit = Retrofit.Builder()
                     .baseUrl("http://grand-qa-env-cloned.us-east-2.elasticbeanstalk.com/")
-                    .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
             }
             return retrofit!!.create(APIService::class.java)
         }
-
-
 }

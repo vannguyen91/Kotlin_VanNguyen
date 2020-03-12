@@ -5,7 +5,7 @@ import com.van.nguyen.kotlin.model.SampleModel
 class DataLocal() {
     val SAMPLE_LIST = arrayListOf<String>(
         "Request API with Retrofit 2",
-        "A",
+        "Request API with Retrofit and Rxjava",
         "A",
         "A",
         "A",
